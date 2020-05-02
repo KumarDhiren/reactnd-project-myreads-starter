@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Book from "./Book";
+import BookList from "./BookList";
 
 export default class SearchBarComponent extends Component {
   state = {
@@ -12,6 +12,12 @@ export default class SearchBarComponent extends Component {
     this.setState({
       searchText: value,
     });
+  };
+
+  clearSearchText = (book, value) => {
+    const { updateBookStatus } = this.props;
+    this.setState({ searchText: "" });
+    updateBookStatus(book, value);
   };
 
   render() {
@@ -41,11 +47,10 @@ export default class SearchBarComponent extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid">
-            {resultingArray.map((book) => (
-              <Book key={book.id} book={book} />
-            ))}
-          </ol>
+          <BookList
+            books={resultingArray}
+            updateBookStatus={this.clearSearchText}
+          />
         </div>
       </div>
     );
