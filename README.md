@@ -1,5 +1,9 @@
 # MyReads Project
 
+## Webpage snapshots
+
+[![main-screen.jpg](https://i.postimg.cc/Fs6548fq/main-screen.jpg)](https://postimg.cc/HVbP0S94)
+
 ## Features Updated :
 
     * Current state book can't be changed to same state hence that select option is disabled.

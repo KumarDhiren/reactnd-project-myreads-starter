@@ -35,30 +35,37 @@ export default class SearchBarComponent extends Component {
   render() {
     const { searchItems, searchText } = this.state;
     return (
-      <div className="search-books">
-        <div className="search-books-bar">
-          <Link className="close-search" to="/">
-            Close
-          </Link>
-          <div className="search-books-input-wrapper">
-            <input
-              type="text"
-              placeholder="Search by title or author"
-              value={searchText}
-              onChange={this.handleOnChange}
+      <React.Fragment>
+        <div className="list-books-title">
+          <h1>MyReads</h1>
+        </div>
+        <div className="search-books">
+          <div className="search-books-bar">
+            <Link className="close-search" to="/">
+              Close
+            </Link>
+            <div className="search-books-input-wrapper">
+              <input
+                type="text"
+                placeholder="Search by title or author"
+                value={searchText}
+                onChange={this.handleOnChange}
+              />
+            </div>
+          </div>
+          <div style={{ color: "#fbaacf" }}>
+            {searchItems.length === 0 && searchText !== "" && (
+              <span> "No Books Found" </span>
+            )}
+          </div>
+          <div className="search-books-results">
+            <BookList
+              books={searchItems}
+              updateBookStatus={this.clearSearchText}
             />
           </div>
         </div>
-        <div className="search-books-results">
-          {searchItems.length === 0 && searchText !== "" && (
-            <span style={{ color: "#fbaacf" }}> "No Books Found" </span>
-          )}
-          <BookList
-            books={searchItems}
-            updateBookStatus={this.clearSearchText}
-          />
-        </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

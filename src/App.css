@@ -79,7 +79,6 @@ body,
 /* search page */
 
 .search-books-bar {
-  position: fixed;
   width: 100%;
   top: 0;
   left: 0;
@@ -100,7 +99,7 @@ body,
   border: none;
   outline: none;
   color: rgb(238, 242, 245);
-  background-image: url("./icons/maxresdefault.jpg");
+  background-image: url("./icons/background.png");
 }
 
 .close-search {
