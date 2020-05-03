@@ -6,7 +6,7 @@ const Book = (props) => {
 
   const handleChange = (event) => {
     const { value } = event.target;
-    if (value !== "none") updateBookStatus(book, event.target.value);
+    updateBookStatus(book, value);
   };
 
   return (

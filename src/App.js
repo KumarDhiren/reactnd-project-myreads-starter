@@ -1,5 +1,5 @@
 import React from "react";
-import { getAll } from "./BooksAPI";
+import { getAll, update, get } from "./BooksAPI";
 import "./App.css";
 import SearchBarComponent from "./components/SearchBarComponent";
 import DisplayBooksComponent from "./components/DisplayBooksComponent";
@@ -18,15 +18,20 @@ class BooksApp extends React.Component {
     });
   };
 
-  updateBookStatus = (book, value) => {
-    const { books } = this.state;
-    const a = books.map((prevBook) => {
-      if (prevBook === book) prevBook.shelf = value;
-      return prevBook;
+  updateBookStatus = (book, shelf) => {
+    console.log(book, shelf);
+    update(book, shelf).then(() => {
+      if (shelf === "none") {
+        get(book.id).then((book) => {
+          this.setState({ books: [...this.state.books, book] });
+        });
+      } else {
+        getAll().then((books) => {
+          this.setState({ books });
+        });
+      }
     });
-    this.setState({
-      books: a,
-    });
+    console.log(this.state.books.find((fbook) => fbook === book));
   };
 
   render() {

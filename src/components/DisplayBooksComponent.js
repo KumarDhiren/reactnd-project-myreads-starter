@@ -38,6 +38,12 @@ export default class DisplayBooksComponent extends Component {
               filterOption="read"
               updateBookStatus={updateBookStatus}
             />
+            <BookListContents
+              books={this.props.books}
+              section="None"
+              filterOption="none"
+              updateBookStatus={updateBookStatus}
+            />
           </div>
         </div>
         <SearchButtonComponent />
