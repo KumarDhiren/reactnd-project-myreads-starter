@@ -2,6 +2,12 @@
 
 ## Webpage snapshots
 
+Sample Webpage Design using moqups
+
+[![sample.jpg](https://i.postimg.cc/nzWYz4vH/sample.jpg)](https://postimg.cc/tZhVvVSf)
+
+Actual website look
+
 [![main-screen.jpg](https://i.postimg.cc/Fs6548fq/main-screen.jpg)](https://postimg.cc/HVbP0S94)
 
 ## Features Updated :
