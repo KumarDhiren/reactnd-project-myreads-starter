@@ -10,22 +10,30 @@ const BookListContents = (props) => {
     return book.shelf === filterOption;
   });
 
-  const style =
-    section === "Currently Reading"
-      ? { color: "green", textAlign: "center" }
-      : section === "Want to Read"
-      ? { color: "orange", textAlign: "center" }
-      : section === "Read"
-      ? { color: "#99094f", textAlign: "center" }
-      : { color: "#3f1db3", textAlign: "center" };
+  const style = (section) => {
+    switch (section) {
+      case "Currently Reading":
+        return { color: "green", textAlign: "center" };
+      case "Want to Read":
+        return { color: "orange", textAlign: "center" };
+      case "Read":
+        return { color: "#99094f", textAlign: "center" };
+      default:
+        return { color: "#3f1db3", textAlign: "center" };
+    }
+  };
 
   return (
     booksTodisplay.length !== 0 && (
       <div className="bookshelf">
-        <h2 className="bookshelf-title" style={style}>
+        <h2 className="bookshelf-title" style={style(section)}>
           {section}
         </h2>
-        <BookList books={booksTodisplay} updateBookStatus={updateBookStatus} />
+        <BookList
+          books={booksTodisplay}
+          bookshelfs={props.bookshelfs}
+          updateBookStatus={updateBookStatus}
+        />
       </div>
     )
   );
@@ -34,6 +42,9 @@ const BookListContents = (props) => {
 BookListContents.propTypes = {
   books: PropTypes.array.isRequired,
   section: PropTypes.string.isRequired,
+  filterOption: PropTypes.string.isRequired,
+  updateBookStatus: PropTypes.func.isRequired,
+  bookshelfs: PropTypes.array.isRequired,
 };
 
 export default BookListContents;

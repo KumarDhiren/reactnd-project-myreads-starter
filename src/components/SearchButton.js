@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SearchButtonComponent = (props) => {
+const SearchButton = (props) => {
   return (
     <div className="open-search">
       <Link to="/search">
@@ -11,4 +11,4 @@ const SearchButtonComponent = (props) => {
   );
 };
 
-export default SearchButtonComponent;
+export default SearchButton;

@@ -25,18 +25,24 @@ const Book = (props) => {
             <select onChange={handleChange}>
               <option value="move">Move to...</option>
               <option
-                value="currentlyReading"
-                disabled={book.shelf === "currentlyReading"}
+                value={props.bookshelfs[0]}
+                disabled={book.shelf === props.bookshelfs[0]}
               >
                 Currently Reading
               </option>
-              <option value="wantToRead" disabled={book.shelf === "wantToRead"}>
+              <option
+                value={props.bookshelfs[1]}
+                disabled={book.shelf === props.bookshelfs[1]}
+              >
                 Want to Read
               </option>
-              <option value="read" disabled={book.shelf === "read"}>
+              <option
+                value={props.bookshelfs[2]}
+                disabled={book.shelf === props.bookshelfs[2]}
+              >
                 Read
               </option>
-              <option value="none">None</option>
+              <option value={props.bookshelfs[3]}>None</option>
             </select>
           </div>
         </div>
@@ -53,6 +59,7 @@ const Book = (props) => {
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
+  bookshelfs: PropTypes.array.isRequired,
 };
 
 export default Book;

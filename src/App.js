@@ -1,13 +1,14 @@
 import React from "react";
 import { getAll, update, get } from "./BooksAPI";
 import "./App.css";
-import SearchBarComponent from "./components/SearchBarComponent";
-import DisplayBooksComponent from "./components/DisplayBooksComponent";
+import SearchBar from "./components/SearchBar";
+import DisplayBooks from "./components/DisplayBooks";
 import { Route } from "react-router-dom";
 
 class BooksApp extends React.Component {
   state = {
     books: [],
+    bookshelfs: ["currentlyReading", "wantToRead", "read", "none"],
   };
 
   componentDidMount = () => {
@@ -19,19 +20,21 @@ class BooksApp extends React.Component {
   };
 
   updateBookStatus = (book, shelf) => {
-    console.log(book, shelf);
     update(book, shelf).then(() => {
       if (shelf === "none") {
         get(book.id).then((book) => {
-          this.setState({ books: [...this.state.books, book] });
+          this.setState({
+            books: [...this.state.books.filter((b) => b.id !== book.id), book],
+          });
         });
       } else {
-        getAll().then((books) => {
-          this.setState({ books });
-        });
+        getAll().then((books) =>
+          this.setState({
+            books,
+          })
+        );
       }
     });
-    console.log(this.state.books.find((fbook) => fbook === book));
   };
 
   render() {
@@ -41,9 +44,10 @@ class BooksApp extends React.Component {
           exact
           path="/"
           render={() => (
-            <DisplayBooksComponent
+            <DisplayBooks
               className="app-section"
               books={this.state.books}
+              bookshelfs={this.state.bookshelfs}
               updateBookStatus={this.updateBookStatus}
             />
           )}
@@ -51,9 +55,10 @@ class BooksApp extends React.Component {
         <Route
           path="/search"
           render={() => (
-            <SearchBarComponent
+            <SearchBar
               books={this.state.books}
               updateBookStatus={this.updateBookStatus}
+              bookshelfs={this.state.bookshelfs}
             />
           )}
         />

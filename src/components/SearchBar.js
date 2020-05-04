@@ -3,11 +3,8 @@ import { Link } from "react-router-dom";
 import BookList from "./BookList";
 import { search } from "../BooksAPI";
 
-export default class SearchBarComponent extends Component {
-  state = {
-    searchText: "",
-    searchItems: [],
-  };
+export default class SearchBar extends Component {
+  state = { searchText: "", searchItems: [] };
 
   handleOnChange = (e) => {
     const { value } = e.target;
@@ -62,6 +59,7 @@ export default class SearchBarComponent extends Component {
             <BookList
               books={searchItems}
               updateBookStatus={this.clearSearchText}
+              bookshelfs={this.props.bookshelfs}
             />
           </div>
         </div>

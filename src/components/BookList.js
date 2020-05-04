@@ -9,7 +9,12 @@ const BookList = (props) => {
     <div className="bookshelf-books">
       <ol className="books-grid">
         {books.map((book) => (
-          <Book key={book.id} book={book} updateBookStatus={updateBookStatus} />
+          <Book
+            key={book.id}
+            book={book}
+            bookshelfs={props.bookshelfs}
+            updateBookStatus={updateBookStatus}
+          />
         ))}
       </ol>
     </div>
@@ -18,6 +23,8 @@ const BookList = (props) => {
 
 BookList.propTypes = {
   books: PropTypes.array.isRequired,
+  updateBookStatus: PropTypes.func.isRequired,
+  bookshelfs: PropTypes.array.isRequired,
 };
 
 export default BookList;
