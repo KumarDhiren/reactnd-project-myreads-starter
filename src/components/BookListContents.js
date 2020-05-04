@@ -33,6 +33,7 @@ const BookListContents = (props) => {
           books={booksTodisplay}
           bookshelfs={props.bookshelfs}
           updateBookStatus={updateBookStatus}
+          existingBooks={books}
         />
       </div>
     )

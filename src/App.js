@@ -20,7 +20,9 @@ class BooksApp extends React.Component {
   };
 
   updateBookStatus = (book, shelf) => {
-    update(book, shelf).then(() => {
+    book.shelf = shelf;
+    update(book, shelf).then((b) => {
+      if (b.shelf === undefined) b.shelf = shelf;
       if (shelf === "none") {
         get(book.id).then((book) => {
           this.setState({
@@ -28,11 +30,7 @@ class BooksApp extends React.Component {
           });
         });
       } else {
-        getAll().then((books) =>
-          this.setState({
-            books,
-          })
-        );
+        getAll().then((books) => this.setState({ books }));
       }
     });
   };

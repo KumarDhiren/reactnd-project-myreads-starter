@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Book = (props) => {
-  const { book, updateBookStatus } = props;
+  const { book, updateBookStatus, selected } = props;
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -22,7 +22,7 @@ const Book = (props) => {
             }}
           />
           <div className="book-shelf-changer">
-            <select onChange={handleChange}>
+            <select onChange={handleChange} value={selected}>
               <option value="move">Move to...</option>
               <option
                 value={props.bookshelfs[0]}

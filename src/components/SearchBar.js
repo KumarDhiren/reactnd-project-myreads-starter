@@ -58,6 +58,7 @@ export default class SearchBar extends Component {
           <div className="search-books-results">
             <BookList
               books={searchItems}
+              existingBooks={this.props.books}
               updateBookStatus={this.clearSearchText}
               bookshelfs={this.props.bookshelfs}
             />
